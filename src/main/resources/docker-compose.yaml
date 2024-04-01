@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "ocanada"
+      MYSQL_DATABASE: "concabase"
+     
+    ports:
+      - "3306:3306"
+    networks:
+      - bridge
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - bridge
+
+networks: 
+  bridge:
+    driver: bridge
+    
