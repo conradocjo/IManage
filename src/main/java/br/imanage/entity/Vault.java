@@ -1,7 +1,8 @@
-package br.imanage.persistence.entity;
+package br.imanage.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -10,17 +11,22 @@ import java.time.LocalDateTime;
 @Table(name = "TB_VAULT")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Vault {
 
     public Vault(String system, String password) {
         this.system = system;
         this.password = password;
-        this.createdAt = LocalDateTime.now();
+        this.creationDate = LocalDateTime.now();
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_USER_ID")
+    private User user;
 
     @Column(name = "CL_SYSTEM")
     private String system;
@@ -28,8 +34,11 @@ public class Vault {
     @Column(name = "CL_PASSWORD")
     private String password;
 
+    @Column(name = "CL_CREATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CL_CREATED_DATE")
-    private LocalDateTime createdAt;
+    private LocalDateTime creationDate;
 
+    @Column(name = "CL_UPDATE_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updateDate;
 }

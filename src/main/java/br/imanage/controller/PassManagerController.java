@@ -1,7 +1,7 @@
-package br.imanage.controller.pass;
+package br.imanage.controller;
 
 
-import br.imanage.persistence.entity.Vault;
+import br.imanage.entity.Vault;
 import br.imanage.service.VaultService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

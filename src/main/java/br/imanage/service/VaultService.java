@@ -1,6 +1,6 @@
 package br.imanage.service;
 
-import br.imanage.persistence.entity.Vault;
+import br.imanage.entity.Vault;
 
 public interface VaultService {
 
