@@ -1,10 +1,7 @@
 package br.imanage.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,31 +10,27 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+@Data
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "TB_USERS")
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Data
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "CL_USER_NAME", unique = true)
-    private String nameuser;
 
     @Column(name = "CL_NAME", unique = true)
     private String name;
 
-    @Column(name = "CL_EMAIL", unique = true)
-    private String email;
+    @Column(name = "CL_USER_NAME", unique = true)
+    private String nameuser;
 
-    @Column(name = "CL_CELPHONE", unique = true)
-    private String celphone;
-
-    @Column(name = "PASSWORD")
+    @Column(name = "CL_PASSWORD")
     private String password;
 
     @Column(name = "CL_CREATION_DATE")
@@ -48,9 +41,15 @@ public class User implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updateDate;
 
-    @Column(name = "ROLE")
+    @Column(name = "CL_ROLE")
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    public User(String nameuser, String password, UserRole role) {
+        this.nameuser = nameuser;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -98,4 +97,5 @@ public class User implements UserDetails {
             return role;
         }
     }
+
 }

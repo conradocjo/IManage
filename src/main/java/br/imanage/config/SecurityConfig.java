@@ -1,6 +1,5 @@
 package br.imanage.config;
 
-
 import br.imanage.security.SecurityFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +31,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/users/sign-in", "/users/sign-up").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/users/sign-in", "/v1/users/sign-up").permitAll()
                         .requestMatchers("/swagger-ui/**",
                                 "/swagger-resources/*",
                                 "/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/*", " /api/swagger-ui/**", "/swagger-ui.html", "/swagger-ui/index.html",

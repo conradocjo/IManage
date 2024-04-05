@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 
 @Tag(name = "UserController", description = "Gerenciamento de usuários...")
 @RestController
-@RequestMapping("users")
+@RequestMapping("/v1/users")
 public class UserController {
 
     private UserService service;

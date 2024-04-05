@@ -16,10 +16,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-
-    @Value("")
-    private String teste;
-
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -34,14 +30,6 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-
-
-    /* Criar método que retorna os parametros de conexão. */
-    @Override
-    public String login(String username, String password) {
-        return null;
-    }
-
 
     private User getUser(UserRequest userRequest) {
         return User.builder()
