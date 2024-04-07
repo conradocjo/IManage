@@ -2,18 +2,17 @@ package br.imanage.controller;
 
 
 import br.imanage.entity.Vault;
+import br.imanage.entity.dto.VaultDto;
 import br.imanage.service.VaultService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@RestController
+@RestController()
 @RequestMapping("/v1/vault/")
 @Tag(name = "PassManagerController", description = "Cadastro de senhas para sistemas (Vault)..")
 public class PassManagerController {
@@ -28,10 +27,18 @@ public class PassManagerController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Cadastro realizado com sucesso.."),
             @ApiResponse(responseCode = "500", description = "Erro Interno")})
-    public Optional<String> registerNewPass(@RequestHeader("system") String system
+    public ResponseEntity<String> registerNewPass(@RequestHeader("system") String system
             , @RequestHeader("password") String password) {
         service.registerPass(new Vault(system, password));
-        return Optional.of("Cadastro realizado com sucesso..");
+        return ResponseEntity.ok("Cadastro realizado com sucesso..");
+    }
+
+    @GetMapping(value = "/get-vaults")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Sucesso.."),
+            @ApiResponse(responseCode = "500", description = "Erro Interno")})
+    public ResponseEntity<List<VaultDto>> getVaults() {
+        return ResponseEntity.ok(service.listPasswordsByUser());
     }
 
 }

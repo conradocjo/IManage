@@ -2,8 +2,12 @@ package br.imanage.service;
 
 import br.imanage.entity.User;
 import br.imanage.entity.Vault;
+import br.imanage.entity.dto.VaultDto;
+import br.imanage.exception.BusinessException;
 import br.imanage.repository.VaultRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,16 +27,35 @@ public class VaultServiceImpl implements VaultService {
     @Override
     public void registerPass(Vault vault) {
         try {
-            vault.setPassword(hashService.encodePass(vault.getPassword()));
-            log.info("Salvando vault...");
-            vaultRepository.save(vault);
+            if (isUserAccredited()) {
+                vault.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+                vault.setPassword(hashService.encodePass(vault.getPassword()));
+                log.info("Salvando vault...");
+                vaultRepository.save(vault);
+            } else {
+                throw new BusinessException("Erro ao recuperar contexto de autenticação.");
+            }
+
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao gravar vault.");
+            throw new BusinessException(e.getMessage());
         }
     }
 
-    public List<Vault> listPasswordsByUser(User user) {
-        return null;
+    @Override
+    public List<VaultDto>listPasswordsByUser() {
+        if (isUserAccredited()) {
+            var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return VaultDto.getVaultDtoList(vaultRepository.findAllByUserId(user.getId()));
+        } else {
+            throw new BusinessException("Erro ao recuperar contexto de autenticação.");
+        }
+    }
+
+
+    private static boolean isUserAccredited() {
+        return ObjectUtils.isNotEmpty(SecurityContextHolder.getContext())
+                && ObjectUtils.isNotEmpty(SecurityContextHolder.getContext().getAuthentication())
+                && ObjectUtils.isNotEmpty(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
 }
