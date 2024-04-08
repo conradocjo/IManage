@@ -11,7 +11,7 @@ public class PropertiesConfig {
     @Bean
     public PropertySourcesPlaceholderConfigurer configurer() {
         var configurer = new PropertySourcesPlaceholderConfigurer();
-        configurer.setLocation(new FileSystemResource("./application.properties"));
+        configurer.setLocation(new FileSystemResource("application-cjo.properties"));
         return configurer;
     }
 
