@@ -77,7 +77,7 @@ public class VaultServiceImpl implements VaultService {
                 var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 var selectedVault = vaultRepository.findByIdAndUserId(user.getId(), id);
                 selectedVault.setSystem(system);
-                selectedVault.setPassword(hashService.encodePass(selectedVault.getPassword()));
+                selectedVault.setPassword(hashService.encodePass(password));
                 selectedVault.setUpdateDate(LocalDateTime.now());
                 log.info("Atualizando vault do usuário {} id {} ...", user.getName(), selectedVault.getId());
                 return getVaultDtoFromVaultEntity(vaultRepository.save(selectedVault));
