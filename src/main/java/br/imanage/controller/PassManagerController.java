@@ -41,4 +41,22 @@ public class PassManagerController {
         return ResponseEntity.ok(service.listPasswordsByUser());
     }
 
+    @DeleteMapping(value = "/delete-vaults")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Sucesso.."),
+            @ApiResponse(responseCode = "500", description = "Erro Interno")})
+    public ResponseEntity<String> deleteVault(@RequestHeader("vaultId") Integer id) {
+        return ResponseEntity.ok(service.deleteVaultById(id));
+    }
+
+    @PutMapping(value = "/update-vaults")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Sucesso.."),
+            @ApiResponse(responseCode = "500", description = "Erro Interno")})
+    public ResponseEntity<VaultDto> updateVault(@RequestHeader("vaultId") Integer id
+            , @RequestHeader("system") String system
+            , @RequestHeader("password") String password) {
+        return ResponseEntity.ok(service.updateVaultById(id, system, password));
+    }
+
 }

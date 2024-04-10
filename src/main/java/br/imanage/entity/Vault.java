@@ -28,7 +28,7 @@ public class Vault {
     @JoinColumn(name = "FK_USER_ID")
     private User user;
 
-    @Column(name = "CL_SYSTEM", unique = true)
+    @Column(name = "CL_SYSTEM", unique = false)
     private String system;
 
     @Column(name = "CL_PASSWORD")

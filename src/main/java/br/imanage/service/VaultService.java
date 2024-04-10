@@ -11,4 +11,8 @@ public interface VaultService {
     void registerPass(Vault vault);
 
     List<VaultDto> listPasswordsByUser();
+
+    String deleteVaultById(Integer id);
+
+    VaultDto updateVaultById(Integer id, String system, String password);
 }

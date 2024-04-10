@@ -27,8 +27,10 @@ replay_pid*
 
 target
 
-#application-cjo.properties
-src/main/resources/application-cjo.properties
+#application.properties
+src/main/resources/application.properties
 
 application-cjo.properties
 application-local.properties
+
+application.properties
