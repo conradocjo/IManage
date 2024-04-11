@@ -4,8 +4,8 @@ services:
   mysqlsrv:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: "ocanada"
-      MYSQL_DATABASE: "concabase"
+      MYSQL_ROOT_PASSWORD: "senha"
+      MYSQL_DATABASE: "database"
      
     ports:
       - "3306:3306"
