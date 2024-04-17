@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "5e78b51c-48c3-4169-b81d-752890d1633e",
+		"name": "Testes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5068569"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Sign-UP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user\": \"siuma\",\n  \"password\": \"123124125\",\n  \"name\": \"siuma teste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/users/sign-up",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign-IN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userName\": \"siuma\",\n  \"password\": \"123124125\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/users/sign-in",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vault",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InNpdW1hIiwiZXhwIjoxNzEzMzE0MzY2fQ.9BTXPpeZa1Tmejpkiviw_YGY-7ZlJpYRE4l5NmmV3CI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "system",
+								"value": "https://conrado.br24213",
+								"type": "text"
+							},
+							{
+								"key": "password",
+								"value": "asfasf1123",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/v1/vault/new-pass",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"vault",
+								"new-pass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObterVault",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InNpdW1hIiwiZXhwIjoxNzEzMzE0MzY2fQ.9BTXPpeZa1Tmejpkiviw_YGY-7ZlJpYRE4l5NmmV3CI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/vault/get-vaults",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"vault",
+								"get-vaults"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InNpdW1hIiwiZXhwIjoxNzEyNzA4NjExfQ.XpxmT6usjMHIa_rZip49lReIs5utdWcXl1VJBGqEs5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "vaultId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/v1/vault/delete-vaults",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"vault",
+								"delete-vaults"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InNpdW1hIiwiZXhwIjoxNzEyNzk4MDc3fQ.0dpBU23mhC51ZHto7WJ-MVA0IK0B0v3ywH5qYtRvbTI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "system",
+								"value": "https://charopiiin.com",
+								"type": "text"
+							},
+							{
+								"key": "password",
+								"value": "teste",
+								"type": "text"
+							},
+							{
+								"key": "vaultId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/v1/vault/update-vaults",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"vault",
+								"update-vaults"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
