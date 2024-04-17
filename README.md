@@ -23,3 +23,9 @@ pkg install cronie termux-services
 sv-enable crond
 crontab -e 
 
+Install mysql amd init:
+
+yes | pkg upgrade && pkg in git python -y && cd && git clone "https://github.com/anay-p/mysql-for-termux.git" && cd mysql-for-termux && python installer.py && source ~/../usr/etc/bash.bashrc
+
+subir o mysql
+cd mysql-for-termux && python installer.py && source ~/../usr/etc/bash.bashrc
