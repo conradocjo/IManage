@@ -7,5 +7,7 @@ public interface HashService {
 
     String encodePass(String vault);
 
+    String encodeParcialPass(String vault);
+
     String decoderPass(String test);
 }

@@ -35,6 +35,11 @@ public class HashServiceImpl implements HashService {
         return keyWord() + getEncoder().encodeToString(vault.getBytes());
     }
 
+    @Override
+    public String encodeParcialPass(String vault) {
+        return getEncoder().encodeToString(vault.getBytes());
+    }
+
     /**
      * Decripta Senha
      * */

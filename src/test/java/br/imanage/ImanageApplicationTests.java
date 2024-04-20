@@ -6,8 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ImanageApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    public void teste() {
+    }
 }

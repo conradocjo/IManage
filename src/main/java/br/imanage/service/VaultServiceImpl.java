@@ -33,7 +33,7 @@ public class VaultServiceImpl implements VaultService {
         try {
             if (isUserAccredited()) {
                 vault.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-                vault.setPassword(hashService.encodePass(vault.getPassword()));
+                vault.setPassword(hashService.encodeParcialPass(hashService.encodePass(vault.getPassword())));
                 log.info("Salvando vault...");
                 vaultRepository.save(vault);
             } else {
@@ -77,7 +77,7 @@ public class VaultServiceImpl implements VaultService {
                 var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 var selectedVault = vaultRepository.findByIdAndUserId(user.getId(), id);
                 selectedVault.setSystem(system);
-                selectedVault.setPassword(hashService.encodePass(password));
+                selectedVault.setPassword(hashService.encodeParcialPass(hashService.encodePass(password)));
                 selectedVault.setUpdateDate(LocalDateTime.now());
                 log.info("Atualizando vault do usuário {} id {} ...", user.getName(), selectedVault.getId());
                 return getVaultDtoFromVaultEntity(vaultRepository.save(selectedVault));
