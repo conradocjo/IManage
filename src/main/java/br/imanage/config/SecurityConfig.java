@@ -32,9 +32,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/v1/users/sign-in", "/v1/users/sign-up").permitAll()
-                        .requestMatchers("/swagger-ui/**",
-                                "/swagger-resources/*",
-                                "/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/*", " /api/swagger-ui/**", "/swagger-ui.html", "/swagger-ui/index.html",
+                        .requestMatchers("/swagger-ui/**", "/swagger-resources/*",
+                                "/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/*",
+                                " /api/swagger-ui/**", "/swagger-ui.html", "/swagger-ui/index.html",
                                 "/api-docs/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui/**", "/bus/v3/api-docs/**")
                         .permitAll()
                         .anyRequest().authenticated())

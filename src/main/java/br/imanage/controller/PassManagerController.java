@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/v1/vault/")
+@CrossOrigin
 @Tag(name = "PassManagerController", description = "Cadastro de senhas para sistemas (Vault)..")
 public class PassManagerController {
 
